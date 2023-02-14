@@ -1,6 +1,4 @@
-from flask import Blueprint
-
-from main import app
+from flask import Blueprint, current_app as app
 
 bp = Blueprint('logs', __name__, url_prefix='/')
 

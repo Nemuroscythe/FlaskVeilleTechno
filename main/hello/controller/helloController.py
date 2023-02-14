@@ -1,13 +1,12 @@
 from flask import (
-    Blueprint, jsonify, request
+    Blueprint, jsonify, request, current_app as app
 )
 
-from main import app
 from main.hello.service import helloService
 
-# Ce fichier contient tout nos points d'entrées (endpoints) pour la partie "hello"
+# Ce fichier contient tous nos points d'entrées (endpoints) pour la partie "hello"
 
-# Créer un blueprint qu'on doit lié a notre app instance dans __init__
+# Créer un blueprint qu'on doit lier à notre app instance dans __init__
 bp = Blueprint('hello', __name__, url_prefix='/')
 
 

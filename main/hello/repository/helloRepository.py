@@ -1,6 +1,7 @@
-from main import app
-from main import database as db
+from flask import current_app as app
+
 from main.hello.models.HelloMessage import HelloMessage
+from main.model import db
 
 
 # Ce fichier sert à la communication avec la base de données

@@ -12,10 +12,9 @@ class Config:
     CSRF_ENABLED = True
     SECRET_KEY = 'this-really-needs-to-be-changed'
 
-    HOST = os.getenv("HOST")
-    USER = os.getenv("USER")
-    PASSWORD = os.getenv("PASSWORD")
-    DATABASE = os.getenv("DATABASE")
-    PORT = os.getenv("PORT")
-    PSYCOPG2_CONNECTION_STRING = "host=%s dbname=%s user=%s password=%s port=%s" % (
-    HOST, DATABASE, USER, PASSWORD, PORT)
+    DATABASE_BASE_URL = os.getenv("DATABASE_BASE_URL")
+    DATABASE_USERNAME = os.getenv("DATABASE_USERNAME")
+    DATABASE_PASSWORD = os.getenv("DATABASE_PASSWORD")
+    DATABASE_NAME = os.getenv("DATABASE_NAME")
+    DATABASE_PORT = os.getenv("DATABASE_PORT")
+    SQLALCHEMY_DATABASE_URI = f"postgresql://{DATABASE_USERNAME}:{DATABASE_PASSWORD}@{DATABASE_BASE_URL}:{DATABASE_PORT}/{DATABASE_NAME}"
