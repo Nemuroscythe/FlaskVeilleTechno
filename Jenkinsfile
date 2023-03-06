@@ -7,7 +7,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo "Building.."
+                bat 'python -m venv venv'
+                bat 'venv\\Scripts\\activate.bat'
+                bat 'pip install -r requirements.txt'
             }
         }
         stage('Test') {
