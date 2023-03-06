@@ -1,4 +1,9 @@
 pipeline {
+    agent {
+        node {
+            label 'test_agent'
+            }
+      }
     stages {
         stage('Build') {
             steps {
