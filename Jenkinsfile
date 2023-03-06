@@ -7,6 +7,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                bat 'pip install wheel setuptools'
                 bat 'python -m venv venv'
                 bat 'venv/Scripts/activate.bat'
                 bat 'pip install -r requirements.txt'
