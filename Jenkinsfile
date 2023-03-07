@@ -14,7 +14,12 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo "Testing.."
+                bat 'python -m pytest'
+            }
+        }
+        stage('Test code quality') {
+            steps {
+                echo "Testing code quality.."
             }
         }
         stage('Deliver') {
