@@ -14,6 +14,7 @@ pipeline {
         }
         stage('Test') {
             steps {
+                bat 'pytest --cov=main --cov-report=xml:coverage.xml'
                 bat 'python -m pytest'
             }
         }
