@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Test code quality') {
             steps {
-                echo "Testing code quality.."
+                echo "pylint main"
             }
         }
         stage('Deliver') {
