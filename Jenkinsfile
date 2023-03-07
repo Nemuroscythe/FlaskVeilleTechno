@@ -14,8 +14,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                bat 'venv/Scripts/activate.bat'
-                bat 'pytest --cov=main --cov-report=xml:coverage.xml'
+                bat 'venv/Scripts/activate.bat & pytest --cov=main --cov-report=xml:coverage.xml'
                 bat 'python -m pytest'
             }
         }
