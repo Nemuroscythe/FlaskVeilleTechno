@@ -8,7 +8,7 @@ pipeline {
         stage('Build') {
             steps {
                 bat 'python -m venv venv'
-                bat 'call venv/Scripts/activate.bat && install -r requirements.txt'
+                bat 'call venv/Scripts/activate.bat && pip install -r requirements.txt'
             }
         }
         stage('Test') {
