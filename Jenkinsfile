@@ -3,7 +3,7 @@ pipeline {
         node {
             label 'test_agent'
             }
-      }
+    }
     stages {
         stage('Build') {
             steps {
@@ -26,6 +26,11 @@ pipeline {
             steps {
                 echo 'Deliver....'
             }
+        }
+    }
+     post {
+        always {
+            cobertura coberturaReportFile: '**/coverage.xml'
         }
     }
 }
