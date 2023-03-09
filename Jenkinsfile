@@ -31,7 +31,7 @@ pipeline {
      post {
         always {
             cobertura coberturaReportFile: '**/coverage.xml'
-            recordIssues tool: pylint(pattern: '**/pylint-report.txt'), enabledForFailure: true
+            recordIssues tool: pyLint(pattern: '**/pylint-report.txt'), enabledForFailure: true
         }
     }
 }
