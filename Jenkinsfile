@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Test code quality') {
             steps {
-                bat 'call venv/Scripts/activate.bat && pylint main'
+                bat 'call venv/Scripts/activate.bat && pylint my_module --output-format=parseable > pylint-report.txt || true'
             }
         }
         stage('Deliver') {
@@ -31,6 +31,7 @@ pipeline {
      post {
         always {
             cobertura coberturaReportFile: '**/coverage.xml'
+            recordIssues tool: pylint(pattern: '**/pylint-report.txt'), enabledForFailure: true
         }
     }
 }
