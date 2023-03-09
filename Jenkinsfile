@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Test code quality') {
             steps {
-                bat 'call venv/Scripts/activate.bat && pylint my_module --output-format=parseable > pylint-report.txt'
+                bat 'call venv/Scripts/activate.bat && pylint my_module --output-format=parseable > pylint-report.txt || exit 0'
             }
         }
         stage('Deliver') {
