@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Test code quality') {
             steps {
-                bat 'pylint main'
+                bat 'call venv/Scripts/activate.bat && pylint main'
             }
         }
         stage('Deliver') {
