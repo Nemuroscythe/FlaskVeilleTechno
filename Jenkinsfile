@@ -26,6 +26,13 @@ pipeline {
                 bat 'call venv/Scripts/activate.bat && pylint main --output-format=parseable > pylint-report.txt || exit 0'
             }
         }
+        stage('Approval'){
+            steps {
+                input message: 'Do you want to deploy?', ok: 'Yes', parameters: [
+                    string(defaultValue: 'Yes', description: 'Yes or No', name: 'Deploy?')
+                ]
+            }
+        }
         stage('Deploy') {
             steps {
                 script {
