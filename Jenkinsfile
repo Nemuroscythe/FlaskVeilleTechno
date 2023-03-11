@@ -26,7 +26,7 @@ pipeline {
                 bat 'call venv/Scripts/activate.bat && pylint main --output-format=parseable > pylint-report.txt || exit 0'
             }
         }
-        stage('Deliver') {
+        stage('Deploy') {
             steps {
                 script {
                     // Execute the pscp command to copy the files to the remote server
