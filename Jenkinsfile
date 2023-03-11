@@ -30,7 +30,6 @@ pipeline {
             steps {
                 script {
                     // Define the remote server's IP address, username, and password
-                    def remoteIp = 'ssh-snacknbite.alwaysdata.net'
                     def remoteUser = 'snacknbite'
                     def remotePassword = 'SnackNBiteIETCPS100!'
 
@@ -38,7 +37,7 @@ pipeline {
                     def localPath = 'E:/JenkinsAgent/workspace/CICDPipeline/*'
                     def remotePath = 'atc'
                     // Execute the pscp command to copy the files to the remote server
-                    bat "pscp -pw ${remotePassword} -r ${localPath} ${remoteUser}@${remoteIp}:${remotePath}"
+                    bat "pscp -pw ${DEV_BASE_URL} -r ${localPath} ${remoteUser}@${remoteIp}:${remotePath}"
                 }
             }
         }
