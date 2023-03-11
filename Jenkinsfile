@@ -37,7 +37,7 @@ pipeline {
                     def localPath = 'E:/JenkinsAgent/workspace/CICDPipeline/*'
                     def remotePath = 'atc'
                     // Execute the pscp command to copy the files to the remote server
-                    bat "pscp -pw ${DEV_BASE_URL} -r ${localPath} ${remoteUser}@${remoteIp}:${remotePath}"
+                    bat "pscp -pw ${env.DEV_BASE_URL} -r ${localPath} ${remoteUser}@${remoteIp}:${remotePath}"
                 }
             }
         }
