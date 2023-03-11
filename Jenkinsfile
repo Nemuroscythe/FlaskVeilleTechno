@@ -29,15 +29,8 @@ pipeline {
         stage('Deliver') {
             steps {
                 script {
-                    // Define the remote server's IP address, username, and password
-                    def remoteUser = 'snacknbite'
-                    def remotePassword = 'SnackNBiteIETCPS100!'
-
-                    // Define the local and remote file paths
-                    def localPath = 'E:/JenkinsAgent/workspace/CICDPipeline/*'
-                    def remotePath = 'atc'
                     // Execute the pscp command to copy the files to the remote server
-                    bat "pscp -pw ${remotePassword} -r ${localPath} ${remoteUser}@${env.DEV_BASE_URL}:${remotePath}"
+                    bat "pscp -pw ${env.DEPLOY_PASSWORD} -r ${env.BUILD_FILES} ${env.DEPLOY_USERNAME}@${env.DEV_BASE_URL}:${env.DEPLOY_PATH}"
                 }
             }
         }
