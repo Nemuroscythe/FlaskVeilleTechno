@@ -21,7 +21,7 @@ pipeline {
                 bat 'python -m pytest'
             }
         }
-        stage('Test code quality') {
+        stage('Code quality') {
             steps {
                 bat 'call venv/Scripts/activate.bat && pylint main --output-format=parseable > pylint-report.txt || exit 0'
             }
@@ -35,14 +35,11 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                script {
-                    // Execute the pscp command to copy the files to the remote server
-                    bat "pscp -pw ${env.DEPLOY_PASSWORD} -r ${env.BUILD_FILES} ${env.DEPLOY_USERNAME}@${env.DEV_BASE_URL}:${env.DEPLOY_PATH}"
-                }
+                bat "pscp -pw ${env.DEPLOY_PASSWORD} -r ${env.BUILD_FILES} ${env.DEPLOY_USERNAME}@${env.DEV_BASE_URL}:${env.DEPLOY_PATH}"
             }
         }
     }
-     post {
+    post {
         always {
             cobertura coberturaReportFile: '**/coverage.xml'
             recordIssues tool: pyLint(pattern: '**/pylint-report.txt'), enabledForFailure: true
