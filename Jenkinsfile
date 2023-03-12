@@ -43,10 +43,10 @@ pipeline {
             recordIssues tool: pyLint(pattern: '**/pylint-report.txt'), enabledForFailure: true
         }
         success {
-            mail to: jeremy.alen@promsocatc.net, subject: 'Le pipeline Jenkins à réussi :)'
+            mail to: jeremy.alen@promsocatc.net, subject: 'Le pipeline Jenkins à réussi'
         }
         failure {
-            mail to: team@promsocatc.net, subject: 'Le pipeline Jenkins à échoué :('
+            mail to: team@promsocatc.net, subject: 'Le pipeline Jenkins à échoué'
         }
     }
 }
