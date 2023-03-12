@@ -28,9 +28,7 @@ pipeline {
         }
         stage('Approval'){
             steps {
-                input message: 'Est ce que vous approuvez le déploiement (vérifier les rapports)?', ok: 'Approuver', parameters: [
-                    string(defaultValue: 'Approuver', description: 'Approuver ou non', name: 'Approbation')
-                ]
+                input message: 'Est ce que vous approuvez le déploiement (vérifier les rapports)?', ok: 'Approuver'
             }
         }
         stage('Deploy') {
