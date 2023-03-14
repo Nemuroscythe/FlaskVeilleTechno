@@ -47,7 +47,7 @@ pipeline {
                 branch 'master'
             }
             steps {
-                bat "pscp -pw ${env.DEPLOY_PASSWORD} -r ${env.BUILD_FILES} ${env.DEPLOY_USERNAME}@${env.DEV_BASE_URL}:${env.DEPLOY_PATH}"
+                bat 'winscp.com /command "open sftp://${env.DEPLOY_USERNAME}:${env.DEPLOY_PASSWORD}@{env.DEV_BASE_URL}" "put ${env.BUILD_FILES} {env.DEPLOY_PATH}" "exit"'
             }
         }
         stage('Deploy to PRD') {
