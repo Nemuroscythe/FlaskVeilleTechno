@@ -41,7 +41,6 @@ pipeline {
         always {
             cobertura coberturaReportFile: '**/coverage.xml'
             recordIssues tool: pyLint(pattern: '**/pylint-report.txt'), enabledForFailure: true
-            mail to: 'jeremy.alen@promoscatc.net', subject: 'Le pipeline Jenkins à réussi'
         }
     }
 }
