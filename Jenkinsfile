@@ -27,6 +27,9 @@ pipeline {
             }
         }
         stage('Approval'){
+            when {
+                branch 'release/*'
+            }
             steps {
                 input message: 'Est ce que vous approuvez le déploiement (vérifier les rapports)?', ok: 'Approuver'
             }
