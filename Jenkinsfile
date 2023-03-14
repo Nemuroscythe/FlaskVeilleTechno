@@ -36,7 +36,7 @@ pipeline {
         }
         stage('Deploy to DEV') {
             when {
-                branch 'feature'
+                branch 'feature/*'
             }
             steps {
                 bat "pscp -pw ${env.DEPLOY_PASSWORD} -r ${env.BUILD_FILES} ${env.DEPLOY_USERNAME}@${env.DEV_BASE_URL}:${env.DEPLOY_PATH}"
