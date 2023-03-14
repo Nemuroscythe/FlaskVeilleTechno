@@ -34,7 +34,26 @@ pipeline {
                 input message: 'Est ce que vous approuvez le déploiement (vérifier les rapports)?', ok: 'Approuver'
             }
         }
-        stage('Deploy') {
+        stage('Deploy to DEV') {
+            when {
+                branch 'feature'
+            }
+            steps {
+                bat "pscp -pw ${env.DEPLOY_PASSWORD} -r ${env.BUILD_FILES} ${env.DEPLOY_USERNAME}@${env.DEV_BASE_URL}:${env.DEPLOY_PATH}"
+            }
+        }
+        stage('Deploy to ACC') {
+            when {
+                branch 'master'
+            }
+            steps {
+                bat "pscp -pw ${env.DEPLOY_PASSWORD} -r ${env.BUILD_FILES} ${env.DEPLOY_USERNAME}@${env.DEV_BASE_URL}:${env.DEPLOY_PATH}"
+            }
+        }
+        stage('Deploy to PRD') {
+            when {
+                branch 'release/*'
+            }
             steps {
                 bat "pscp -pw ${env.DEPLOY_PASSWORD} -r ${env.BUILD_FILES} ${env.DEPLOY_USERNAME}@${env.DEV_BASE_URL}:${env.DEPLOY_PATH}"
             }
