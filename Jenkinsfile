@@ -55,7 +55,7 @@ pipeline {
                 branch 'release/*'
             }
             steps {
-                bat "pscp -pw ${env.DEPLOY_PASSWORD} -r ${env.BUILD_FILES} ${env.DEPLOY_USERNAME}@${env.DEV_BASE_URL}:${env.DEPLOY_PATH}"
+                bat "pscp -pw ${env.DEPLOY_PASSWORD} -r ${env.WORKSPACE} ${env.DEPLOY_USERNAME}@${env.DEV_BASE_URL}:${env.DEPLOY_PATH}"
             }
         }
     }
