@@ -39,7 +39,7 @@ pipeline {
                 branch 'feature/*'
             }
             steps {
-                bat "pscp -pw ${env.DEPLOY_PASSWORD} -r ${env.WORKSPACE}/* ${env.DEPLOY_USERNAME}@${env.DEV_BASE_URL}:${env.DEPLOY_PATH}"
+                bat "pscp -pw ${env.DEPLOY_PASSWORD} -r ${env.WORKSPACE}\* ${env.DEPLOY_USERNAME}@${env.DEV_BASE_URL}:${env.DEPLOY_PATH}"
             }
         }
         stage('Deploy to ACC') {
@@ -47,7 +47,7 @@ pipeline {
                 branch 'master'
             }
             steps {
-                bat "pscp -pw ${env.DEPLOY_PASSWORD} -r ${env.WORKSPACE}/* ${env.DEPLOY_USERNAME}@${env.DEV_BASE_URL}:${env.DEPLOY_PATH}"
+                bat "pscp -pw ${env.DEPLOY_PASSWORD} -r ${env.WORKSPACE}\* ${env.DEPLOY_USERNAME}@${env.DEV_BASE_URL}:${env.DEPLOY_PATH}"
             }
         }
         stage('Deploy to PRD') {
@@ -55,7 +55,7 @@ pipeline {
                 branch 'release/*'
             }
             steps {
-                bat "pscp -pw ${env.DEPLOY_PASSWORD} -r ${env.WORKSPACE}/* ${env.DEPLOY_USERNAME}@${env.DEV_BASE_URL}:${env.DEPLOY_PATH}"
+                bat "pscp -pw ${env.DEPLOY_PASSWORD} -r ${env.WORKSPACE}\* ${env.DEPLOY_USERNAME}@${env.DEV_BASE_URL}:${env.DEPLOY_PATH}"
             }
         }
     }
