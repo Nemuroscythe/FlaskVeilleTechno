@@ -47,7 +47,14 @@ pipeline {
                 branch 'master'
             }
             steps {
-                bat 'winscp.com /command "open sftp://${env.DEPLOY_USERNAME}:${env.DEPLOY_PASSWORD}@${env.DEV_BASE_URL}" "put ${env.WORKSPACE} ${env.DEPLOY_PATH}" "exit"'
+                script {
+                    def remoteHost = ${env.DEV_BASE_URL}
+                    def remoteUser = ${env.DEPLOY_USERNAME}
+                    def remotePassword = ${env.DEPLOY_PASSWORD}
+                    def localDir = ${env.WORKSPACE}
+                    def remoteDir = ${env.DEPLOY_PATH}
+                    bat 'winscp.com /log=winscp.log /command "open sftp://' + remoteUser + ':' + remotePassword + '@' + remoteHost + '" "put ' + localDir + '/* ' + remoteDir + '/" "exit"'
+                }
             }
         }
         stage('Deploy to PRD') {
