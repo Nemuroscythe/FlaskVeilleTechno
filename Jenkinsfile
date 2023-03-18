@@ -48,11 +48,11 @@ pipeline {
             }
             steps {
                 script {
-                    def remoteHost = ${env.DEV_BASE_URL}
-                    def remoteUser = ${env.DEPLOY_USERNAME}
-                    def remotePassword = ${env.DEPLOY_PASSWORD}
-                    def localDir = ${env.WORKSPACE}
-                    def remoteDir = ${env.DEPLOY_PATH}
+                    def remoteHost = env.DEV_BASE_URL
+                    def remoteUser = env.DEPLOY_USERNAME
+                    def remotePassword = env.DEPLOY_PASSWORD
+                    def localDir = env.WORKSPACE
+                    def remoteDir = env.DEPLOY_PATH
                     bat 'winscp.com /log=winscp.log /command "open sftp://' + remoteUser + ':' + remotePassword + '@' + remoteHost + '" "put ' + localDir + '/* ' + remoteDir + '/" "exit"'
                 }
             }
